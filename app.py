@@ -13,8 +13,8 @@ secret_name_db_password = 'user-password'
 # Initialize Azure Key Vault client using client secret credentials
 credential = ClientSecretCredential(
     tenant_id='62c65783-e48b-4438-8d2a-50fb84685b6e',
-    client_id='03419e06-5829-452e-8059-1d65510e77f0',
-    client_secret='3KM8Q~~EUhyil1vCDtnQEzPbbnWi3pk9jrGxxbSB'
+    client_id='58e08cd5-e789-48e9-9948-58970ba37770',
+    client_secret='MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
 )
 secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
