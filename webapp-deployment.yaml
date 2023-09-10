@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: web-app
-        image: dineshmk/node-app:dinesh8                
+        image: dineshmk/node-app:dinesh9               
         ports:
         - containerPort: 80
           name: web-app
