@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app
+        image: dineshmk/node-app:dinesh7                
+        ports:
+        - containerPort: 80
+          name: web-app
+        env:
+        - name: DB_HOST
+          value: db-server
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: dineshdb
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secrets
+              key: user-password
+        volumeMounts:
+        - name: secrets-store
+          mountPath: /mnt/secrets-store
+      volumes:
+      - name: secrets-store
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: azure-kvname
