@@ -6,20 +6,26 @@ from azure.keyvault.secrets import SecretClient
 app = Flask(__name__)
 
 # Configure your Azure Key Vault details
-key_vault_url = 'https://kvdinesh007.vault.azure.net/'
+
 secret_name_db_username = 'username'
 secret_name_db_password = 'user-password'
 
 # Initialize Azure Key Vault client using client secret credentials
-credential = ClientSecretCredential(
-    tenant_id='62c65783-e48b-4438-8d2a-50fb84685b6e',
-    client_id='58e08cd5-e789-48e9-9948-58970ba37770',
-    client_secret='MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
-)
-secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
 
 # Function to retrieve secrets from Azure Key Vault
 def get_secret(secret_name):
+    key_vault_url = 'https://kvdinesh007.vault.azure.net/'
+
+    credential = ClientSecretCredential(
+        tenant_id='62c65783-e48b-4438-8d2a-50fb84685b6e',
+        client_id='58e08cd5-e789-48e9-9948-58970ba37770',
+        client_secret='MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
+    )
+    secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
+
+
     secret = secret_client.get_secret(secret_name)
     return secret.value
 
