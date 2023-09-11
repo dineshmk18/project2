@@ -19,8 +19,8 @@ def get_secret(secret_name):
 
     credential = ClientSecretCredential(
         tenant_id='62c65783-e48b-4438-8d2a-50fb84685b6e',
-        client_id='58e08cd5-e789-48e9-9948-58970ba37770',
-        client_secret='MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
+        client_id='a88f3991-4114-4c3b-b01e-d4093a9d269e',                #'58e08cd5-e789-48e9-9948-58970ba37770',
+        client_secret='x9A8Q~gLpR_Nrv5oiuUsg1F3UUtoqhTuyZcopaI.'      #'MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
     )
     secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
