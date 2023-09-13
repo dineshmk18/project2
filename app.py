@@ -17,7 +17,7 @@ secret_name_db_password = 'user-password'
 def get_secret(secret_name):
     key_vault_url = 'https://kvdinesh007.vault.azure.net/'
 
-    credential = ClientSecretCredential(
+    credential = ClientSecretCredential(  # below details are reffer from {example-app} service principle
         tenant_id='62c65783-e48b-4438-8d2a-50fb84685b6e',
         client_id='fbc85d1a-63e6-43b1-b528-35f30e561182',             #'a88f3991-4114-4c3b-b01e-d4093a9d269e',               
         client_secret='56-8Q~fiieMS4OtiiCHRBAzXfQgrlaeq3wVTobA_'      #'MPV8Q~0LnUvSlBGF2YSAdpnsQeQF-VxDqNzMfci4'
@@ -25,7 +25,7 @@ def get_secret(secret_name):
     secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
 
 
-
+        # o/p is in key-value formate
     secret = secret_client.get_secret(secret_name)
     return secret.value
 
@@ -54,7 +54,7 @@ with app.app_context():
     db.create_all()
 
 
-
+# define root for web application
 @app.route('/', methods=['GET', 'POST'])
 def submit():
     if request.method == 'POST':
@@ -79,6 +79,8 @@ def submit():
 @app.route('/patient_list', methods=['GET'])
 def patient_list():
     patients = Patient.query.all()
+    # patients = Patient.query.with_entities(Patient.name, Patient.symptons.all()
+
     return render_template('patient_list.html', patients=patients)
 
 if __name__ == '__main__':
